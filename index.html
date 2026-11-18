@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ATS Match Checker</title>
+<meta name="description" content="A strict CV review for Malawi: pick the employer type, add a job advert and your CV, and get a critical score, ranked weak points and exact wording to rewrite.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <div class="head-top">
+      <h1>ATS Match Checker</h1>
+      <div class="pal" role="group" aria-label="Colour palette">
+        <button type="button" data-pal="maroon" aria-pressed="true"><span class="sw" aria-hidden="true"><i style="background:#6D0808"></i><i style="background:#2D0000"></i><i style="background:#757D6F"></i><i style="background:#EEEAD7"></i></span>Maroon and sage</button>
+        <button type="button" data-pal="violet" aria-pressed="false"><span class="sw" aria-hidden="true"><i style="background:#F25912"></i><i style="background:#5C3E94"></i><i style="background:#412B6B"></i><i style="background:#211832"></i></span>Violet and orange</button>
+      </div>
+    </div>
+    <p class="lede">A critical CV review for Malawi. Choose the type of employer, add a job advert and your CV, and get a strict score, the exact weak points and the wording to rewrite. It will not tell you a weak CV is good.</p>
+  </header>
+
+  <div class="grid">
+    <section class="stack" aria-label="Inputs">
+      <div class="panel">
+        <span class="eyebrow" id="env-label">Recruitment environment</span>
+        <div class="envs" role="radiogroup" aria-labelledby="env-label">
+          <label class="env"><input type="radio" name="env" value="gov"><span>Malawi Government</span></label>
+          <label class="env"><input type="radio" name="env" value="ngo"><span>NGO</span></label>
+          <label class="env"><input type="radio" name="env" value="un"><span>UN / International</span></label>
+          <label class="env"><input type="radio" name="env" value="private"><span>Private sector</span></label>
+          <label class="env"><input type="radio" name="env" value="sme"><span>SME</span></label>
+        </div>
+        <p class="note" id="env-blurb"></p>
+      </div>
+      <div class="panel">
+        <div class="toolbar" role="group" aria-label="Examples">
+          <button type="button" id="ex-mu12">MU12 example</button>
+          <button type="button" id="ex-cbe">CBE example</button>
+          <button type="button" id="ex-weak">Weak CV example</button>
+          <button type="button" id="clear">Clear both</button>
+        </div>
+        <p class="note" id="loaded-note" style="margin-top:10px"></p>
+      </div>
+      <div class="panel">
+        <div class="label-row"><label for="jd">Job advert</label><span class="count" id="jd-count">0 words</span></div>
+        <div class="upload-row"><button type="button" class="ghost" id="jd-up">Upload advert file</button><input type="file" id="jd-file" accept=".txt,.md,.pdf,.docx" hidden><span class="up-status" id="jd-status" role="status"></span></div>
+        <textarea id="jd" spellcheck="false" placeholder="Paste the full job advert here"></textarea>
+      </div>
+      <div class="panel">
+        <div class="label-row"><label for="cv">Your CV (plain text)</label><span class="count" id="cv-count">0 words</span></div>
+        <div class="upload-row"><button type="button" class="ghost" id="cv-up">Upload CV file</button><input type="file" id="cv-file" accept=".txt,.md,.pdf,.docx" hidden><span class="up-status" id="cv-status" role="status"></span></div>
+        <textarea id="cv" spellcheck="false" placeholder="Paste your CV text here"></textarea>
+        <p class="hint">Upload a PDF, Word (.docx) or text file, or drop a file onto either box. Files are read in your browser. Text is sent to Claude only if you press a button in the Claude report tab.</p>
+        <div class="toolbar" style="margin-top:10px"><button type="button" class="primary" id="run">Check my CV</button></div>
+      </div>
+    </section>
+
+    <section class="stack" id="results" aria-label="Results">
+      <div class="tabbar"><div class="tabs" id="tabs" role="tablist" aria-label="Report sections"></div></div>
+      <div class="stack" id="tabbody" role="tabpanel"></div>
+    </section>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
