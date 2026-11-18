@@ -16,28 +16,44 @@ A strict CV review tool for the Malawi job market. Choose the employer type, add
 | File | Purpose |
 | --- | --- |
 | `index.html` | Page structure |
-| `styles.css` | All styling and both palettes |
-| `app.js` | Scoring engine, report, file upload |
-| `.nojekyll` | Tells GitHub Pages to serve the files as they are |
-
-There is no build step and no dependencies to install.
+| `src/main.js` | Scoring engine, report and file upload |
+| `src/styles.css` | All styling and both palettes |
+| `render.yaml` | Render static-site deployment configuration |
+| `package.json` | Vite scripts and Node.js dependencies |
 
 ## Run it locally
+Install Node.js 20 or newer, then run:
 
-Open `index.html` in a browser. To serve it over HTTP instead:
-
+```bash
+npm install
+npm run dev
 ```
-python3 -m http.server 8000
-```
 
-Then visit http://localhost:8000.
+Open the local URL printed by Vite.
+
+To create and preview the production build:
+
+```bash
+npm run build
+npm run preview
+```
 
 ## Publish with GitHub Pages
 
-1. Create a new repository on GitHub and upload these files to the root of the `main` branch.
-2. Open **Settings > Pages**.
-3. Under **Build and deployment**, set **Source** to **Deploy from a branch**, choose `main` and `/ (root)`, then save.
-4. After a minute the site is live at `https://<your-username>.github.io/<repository-name>/`.
+GitHub Pages can publish the generated `dist` directory with a static-hosting workflow.
+
+## Deploy to Render
+
+The included `render.yaml` creates a Render static site:
+
+1. Push this repository to GitHub.
+2. In Render, choose **New > Blueprint** and select the repository.
+3. Render runs `npm ci && npm run build` and publishes `dist`.
+
+You can also create a static site manually with:
+
+- Build command: `npm ci && npm run build`
+- Publish directory: `dist`
 
 ## Internet access needed
 
